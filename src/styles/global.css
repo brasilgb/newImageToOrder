@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .label-form {
+    @apply text-lg text-gray-500 font-medium ml-6;
+  }
+  .input-form {
+    @apply py-4 px-8 rounded-full text-lg bg-white  border border-gray-200 placeholder:text-slate-400 shadow-md shadow-slate-500;
+  }
+}
