@@ -32,6 +32,8 @@ console.log(order);
         getDataOrder();
     }, [order]);
 
+console.log('dataOrder', dataOrder);
+
     return (
         <>
             <Loading visible={loading} />
@@ -59,7 +61,7 @@ console.log(order);
                                     </View>
                                     <View className='flex-row'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Equipamento: </Text>
-                                        <Text className='text-xl font-medium'>{(order.equipment)}</Text>
+                                        <Text className='text-xl font-medium'>{(order.equipment.equipment)}</Text>
                                     </View>
                                     <View className='flex-row'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Modelo: </Text>

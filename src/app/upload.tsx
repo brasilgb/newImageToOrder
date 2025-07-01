@@ -27,7 +27,7 @@ const Upload = () => {
 	const selectImage = async (useLibrary: boolean) => {
 		let result;
 		const options: ImagePicker.ImagePickerOptions = {
-			mediaTypes: ImagePicker.MediaTypeOptions.Images,
+			mediaTypes: ['images'],
 			allowsEditing: false,
 			aspect: [4, 3],
 			quality: 1,
@@ -50,7 +50,7 @@ const Upload = () => {
 
 	const uploadImage = async (image: any) => {
 		setLoading(true);
-		await apisos.post('/upload', {
+		await apisos.post('upload', {
 			order_id: order,
 			filename: image,
 		}).then((res) => {
@@ -147,7 +147,7 @@ const Upload = () => {
 							</View>
 							<Image
 								className="w-24 h-24 border border-white rounded-md"
-								source={{ uri: `${process.env.EXPO_PUBLIC_SERVER_IP}/storage/ordens/${order}/${img.imagem}` }}
+								source={{ uri: `${process.env.EXPO_PUBLIC_SERVER_IP}/storage/orders/${order}/${img.filename}` }}
 							/>
 						</View>
 					))}

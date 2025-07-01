@@ -75,7 +75,6 @@ function RootLayoutNav() {
   return (
     <AuthProvider>
       <Stack
-      // initialRouteName='index'
         screenOptions={{
           headerShown: false,
           gestureEnabled: true,
