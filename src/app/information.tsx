@@ -14,6 +14,8 @@ const Information = () => {
     const height = StatusBar.currentHeight;
     const [dataOrder, setDataOrder] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    
+console.log(order);
 
     useEffect(() => {
         const getDataOrder = async () => {
@@ -49,7 +51,7 @@ const Information = () => {
                 {!loading &&
                     <ScrollView>
                         <View className='bg-white m-4 rounded-md border border-gray-300 p-3 flex-col gap-2'>
-                            {dataOrder.map((order: any, idx: number) => (
+                            {dataOrder?.map((order: any, idx: number) => (
                                 <View key={idx}>
                                     <View className='flex-row'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Recebimento: </Text>
@@ -57,23 +59,23 @@ const Information = () => {
                                     </View>
                                     <View className='flex-row'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Equipamento: </Text>
-                                        <Text className='text-xl font-medium'>{(order.equipamento)}</Text>
+                                        <Text className='text-xl font-medium'>{(order.equipment)}</Text>
                                     </View>
                                     <View className='flex-row'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Modelo: </Text>
-                                        <Text className='text-xl font-medium'>{(order.modelo)}</Text>
+                                        <Text className='text-xl font-medium'>{(order.model)}</Text>
                                     </View>
                                     <View className='flex-row'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Status: </Text>
-                                        <Text className='text-xl font-medium'>{statusOrdemByValue(order.status)}</Text>
+                                        <Text className='text-xl font-medium'>{statusOrdemByValue(order.service_status)}</Text>
                                     </View>
                                     <View className='flex-col'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Defeito: </Text>
-                                        <Text className='text-xl font-medium'>{(order.defeito)}</Text>
+                                        <Text className='text-xl font-medium'>{(order.defect)}</Text>
                                     </View>
                                     <View className='flex-col'>
                                         <Text className='text-xl font-bold text-megb-blue-secundary mr-2'>Serviço executado: </Text>
-                                        <Text className='text-xl font-medium'>{(order.detalhes)}</Text>
+                                        <Text className='text-xl font-medium'>{(order.services_performed)}</Text>
                                     </View>
                                 </View>
                             ))}

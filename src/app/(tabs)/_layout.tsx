@@ -11,13 +11,15 @@ const {signOut} = useContext(AuthContext);
   return (
     <Tabs
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         tabBarInactiveTintColor: "#FFF0CE",
         tabBarInactiveBackgroundColor: '#0C356A',
         tabBarActiveTintColor: '#FFC436',
         tabBarActiveBackgroundColor: '#0C356A',
         tabBarStyle: {
-          height: 55,
+          // height: 55,
+          // paddingTop: 10,
         },
         headerShown: true,
         headerTitleAlign: 'center',

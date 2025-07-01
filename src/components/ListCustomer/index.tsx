@@ -34,15 +34,15 @@ const ListCustomer = ({ visible }: CustomerProps) => {
 
     const renderItem = ({ item }: any) => (
         <Pressable key={item.id} className='py-1'
-            onPress={() => handleClientId({ "nome": item.nome, "id": item.id })}
+            onPress={() => handleClientId({ "name": item.name, "id": item.id })}
         >
-            <Text className='text-lg'>{item.nome}</Text>
+            <Text className='text-lg'>{item.name}</Text>
         </Pressable>
     );
 
     const handleSearch = (value: any) => {
         const client = value.toLowerCase();
-        const result = customerOrder.filter((cl: any) => (cl.nome.toLowerCase().includes(client)));
+        const result = customerOrder.filter((cl: any) => (cl.name.toLowerCase().includes(client)));
         setFilterSearch(result);
     };
 
@@ -54,7 +54,7 @@ const ListCustomer = ({ visible }: CustomerProps) => {
     }, [customerOrder]);
 
     return (
-        <Modal transparent visible={visible} statusBarTranslucent animationType="fade">
+        <Modal transparent visible={visible} statusBarTranslucent animationType="fade" >
             <View className='flex-1 bg-[#00000077]'>
                 <View className='flex-1 bg-gray-100 m-10 rounded-md shadow-lg shadow-gray-800 p-2'>
                     <View>

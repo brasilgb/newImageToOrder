@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Dimensions,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import React, { useCallback, useContext, useState } from "react";
 import { Formik } from "formik";
@@ -33,7 +35,7 @@ const SignIn = () => {
     useCallback(() => {
       setLoginError("");
     }, []));
-    
+
   const onsubmit = async (values: SignInProps, { resetForm }: any) => {
     await signIn({
       email: values.email,
@@ -44,111 +46,113 @@ const SignIn = () => {
 
   return (
     <>
+      <StatusBar style="light" />
       <Loading visible={loading} />
-      <View className="flex-1 items-center justify-center bg-megb-blue-primary">
-        <View className="my-16">
-          <Image
-            source={require("@/assets/images/megb.png")}
-            className="w-48 h-16"
-          />
-        </View>
-        <Formik
-          validationSchema={signinsc}
-          initialValues={{
-            email: "",
-            password: ""
-          }}
-          enableReinitialize
-          onSubmit={onsubmit}
-        >
-          {({
-            handleChange,
-            handleSubmit,
-            setFieldTouched,
-            values,
-            touched,
-            errors,
-            isValid,
-          }) => (
-            <View className="bg-gray-50 px-3 py-10 w-11/12 rounded-lg">
-              {loginError &&
-                <View className="p-2 flex-row items-center justify-center">
-                  <Text className="text-lg font-medium text-red-500">{loginError}</Text>
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} className="flex-1">
+        <View className="items-center justify-center bg-megb-blue-primary">
+          <View className="my-16">
+            <Image
+              source={require("@/assets/images/megb.png")}
+              className="w-48 h-16"
+            />
+          </View>
+          <Formik
+            validationSchema={signinsc}
+            initialValues={{
+              email: "",
+              password: ""
+            }}
+            enableReinitialize
+            onSubmit={onsubmit}
+          >
+            {({
+              handleChange,
+              handleSubmit,
+              setFieldTouched,
+              values,
+              touched,
+              errors,
+              isValid,
+            }) => (
+              <View className="bg-megb-blue-primary px-3 py-10 w-11/12 rounded-lg">
+                {loginError &&
+                  <View className="p-2 flex-row items-center justify-center">
+                    <Text className="text-lg font-medium text-red-500">{loginError}</Text>
+                  </View>
+                }
+                <View className="mt-2">
+                  <Text className="label-form">E-mail</Text>
+                  <TextInput
+                    className={`input-form ${touched && errors.email && 'border border-red-600'}`}
+                    onChangeText={handleChange("email")}
+                    onBlur={() => setFieldTouched("email")}
+                    value={values.email}
+                    autoCorrect={false}
+                    spellCheck={false}
+                    autoComplete="off"
+                    keyboardType="email-address"
+                  />
+                  {touched && errors && (
+                    <Text className="self-end pr-6 pt-1 text-base text-red-600">
+                      {errors.email}
+                    </Text>
+                  )}
                 </View>
-              }
-              <View className="mt-2">
-                <Text className="label-form">E-mail</Text>
-                <TextInput
-                  className={`input-form ${touched && errors.email && 'border border-red-600'}`}
-                  onChangeText={handleChange("email")}
-                  onBlur={() => setFieldTouched("email")}
-                  value={values.email}
-                  autoCorrect={false}
-                  spellCheck={false}
-                  autoComplete="off"
-                  keyboardType="email-address"
-                />
-                {touched && errors && (
-                  <Text className="self-end pr-6 pt-1 text-base text-red-600">
-                    {errors.email}
-                  </Text>
-                )}
-              </View>
 
-              <View className="mt-6 relative">
-                <Text className="label-form">Senha</Text>
-                <TextInput
-                  className={`input-form ${touched && errors.password && 'border border-red-600'}`}
-                  onChangeText={handleChange("password")}
-                  onBlur={() => setFieldTouched("password")}
-                  value={values.password}
-                  secureTextEntry={!showPassword ? true : false}
-                />
-                {touched && errors && (
-                  <Text className="self-end pr-6 pt-1 text-base text-red-600">
-                    {errors.password}
-                  </Text>
-                )}
-                {!showPassword ? (
-                  <Ionicons
-                    name="eye"
-                    size={32}
-                    color="#64748b"
-                    className="absolute top-10 right-4"
-                    onPress={() => setShowPassword(!showPassword)}
+                <View className="mt-6 relative">
+                  <Text className="label-form">Senha</Text>
+                  <TextInput
+                    className={`input-form ${touched && errors.password && 'border border-red-600'}`}
+                    onChangeText={handleChange("password")}
+                    onBlur={() => setFieldTouched("password")}
+                    value={values.password}
+                    secureTextEntry={!showPassword ? true : false}
                   />
-                ) : (
-                  <Ionicons
-                    name="eye-off"
-                    size={32}
-                    color="#64748b"
-                    className="absolute top-10 right-4"
-                    onPress={() => setShowPassword(!showPassword)}
-                  />
-                )}
-              </View>
+                  {touched && errors && (
+                    <Text className="self-end pr-6 pt-1 text-base text-red-600">
+                      {errors.password}
+                    </Text>
+                  )}
+                  {!showPassword ? (
+                    <Ionicons
+                      name="eye"
+                      size={32}
+                      color="#64748b"
+                      className="absolute top-10 right-4"
+                      onPress={() => setShowPassword(!showPassword)}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="eye-off"
+                      size={32}
+                      color="#64748b"
+                      className="absolute top-10 right-4"
+                      onPress={() => setShowPassword(!showPassword)}
+                    />
+                  )}
+                </View>
 
-              <View className="mt-6">
-                <Pressable
-                  className={`${!isValid ? "bg-gray-200" : "bg-megb-yellow-primary"} px-8 py-4 rounded-full flex-row justify-center shadow-md shadow-gray-700`}
-                  onPress={handleSubmit as any}
-                >
-                  <Text
-                    className={`text-xl font-bold ${!isValid ? "text-gray-300" : "text-megb-blue-primary"
-                      }`}
+                <View className="mt-6">
+                  <Pressable
+                    className={`${!isValid ? "bg-gray-200" : "bg-megb-yellow-primary"} px-8 py-4 rounded-full flex-row justify-center shadow-md shadow-gray-700`}
+                    onPress={handleSubmit as any}
                   >
-                    Entrar
-                  </Text>
-                </Pressable>
+                    <Text
+                      className={`text-xl font-bold ${!isValid ? "text-gray-300" : "text-megb-blue-primary"
+                        }`}
+                    >
+                      Entrar
+                    </Text>
+                  </Pressable>
+                </View>
               </View>
-            </View>
-          )}
-        </Formik>
-      <View className="py-2">
-      <Text className="text-sm text-megb-yellow-secundary">v{process.env.EXPO_PUBLIC_APP_VERSION}</Text>
-      </View>
-        <StatusBar style="light" />
-      </View>
+            )}
+          </Formik>
+          <View className="py-2">
+            <Text className="text-sm text-megb-yellow-secundary">v{process.env.EXPO_PUBLIC_APP_VERSION}</Text>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
     </>
   );
 };

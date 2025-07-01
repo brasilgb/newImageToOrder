@@ -8,7 +8,6 @@ import Loading from "@/components/Loading";
 import clientesc from "@/schemas/clientesc";
 import ListCustomer from "@/components/ListCustomer";
 import { AuthContext } from "@/contexts/Auth";
-import { } from "react-native-safe-area-context";
 import { useFocusEffect } from "expo-router";
 
 const Customer = () => {
@@ -20,6 +19,7 @@ const Customer = () => {
     useCallback(() => {
       setClientData([]);
     }, []));
+  console.log(clientData);
 
   const onsubmit = async ({ resetForm }: any) => {
     setLoading(true);
@@ -49,7 +49,7 @@ const Customer = () => {
             <Formik
               validationSchema={clientesc}
               initialValues={{
-                nome: ""
+                name: ""
               }}
               onSubmit={onsubmit}
             >
@@ -68,14 +68,14 @@ const Customer = () => {
                       <Text className="label-form">Cliente</Text>
                       <TextInput
                         className={`input-form `}
-                        onChangeText={handleChange("nome")}
-                        onBlur={() => setFieldTouched("nome")}
-                        value={values.nome = clientData.nome}
+                        onChangeText={handleChange("name")}
+                        onBlur={() => setFieldTouched("name")}
+                        value={values.name = clientData.name}
                         keyboardType="default"
                       />
                       {touched && errors && (
                         <Text className="self-end pr-6 pt-1 text-base text-red-600">
-                          {errors.nome}
+                          {errors.name}
                         </Text>
                       )}
                     </View>
