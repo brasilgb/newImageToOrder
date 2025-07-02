@@ -14,8 +14,6 @@ const Information = () => {
     const height = StatusBar.currentHeight;
     const [dataOrder, setDataOrder] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    
-console.log(order);
 
     useEffect(() => {
         const getDataOrder = async () => {
@@ -31,8 +29,6 @@ console.log(order);
         };
         getDataOrder();
     }, [order]);
-
-console.log('dataOrder', dataOrder);
 
     return (
         <>
