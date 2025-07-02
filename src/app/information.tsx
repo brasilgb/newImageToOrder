@@ -33,8 +33,8 @@ const Information = () => {
     return (
         <>
             <Loading visible={loading} />
-            <View className='flex-1 bg-gray-200' style={{ paddingTop: height }}>
-                <View className='bg-megb-blue-secundary p-4'>
+            <View className='flex-1 bg-megb-blue-secundary' style={{ paddingTop: height }}>
+                <View className='p-4 bg-megb-blue-secundary'>
                     <Link asChild href={`/(tabs)/${url === 'order' ? 'order' : 'customer'}`}>
                         <Ionicons name='arrow-back' size={25} color={'#FFF0CE'} />
                     </Link>
@@ -47,7 +47,7 @@ const Information = () => {
                     </View>
                 </View>
                 {!loading &&
-                    <ScrollView>
+                    <ScrollView className='bg-gray-200'>
                         <View className='bg-white m-4 rounded-md border border-gray-300 p-3 flex-col gap-2'>
                             {dataOrder?.map((order: any, idx: number) => (
                                 <View key={idx}>

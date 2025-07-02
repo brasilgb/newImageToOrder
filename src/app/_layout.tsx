@@ -72,6 +72,7 @@ function RootLayoutNav() {
     };
     verifyUser();
   }, [router, onSetUser]);
+  
   return (
     <AuthProvider>
       <Stack

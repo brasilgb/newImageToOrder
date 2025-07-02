@@ -102,7 +102,6 @@ const Upload = () => {
 		}, [])
 	);
 
-
 	return (
 		<>
 			<Loading visible={loading} />

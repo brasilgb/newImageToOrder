@@ -48,8 +48,8 @@ const SignIn = () => {
     <>
       <StatusBar style="light" />
       <Loading visible={loading} />
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} className="flex-1">
-        <View className="items-center justify-center bg-megb-blue-primary">
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} className="flex-1 bg-megb-blue-primary">
+        <View className="items-center justify-center">
           <View className="my-16">
             <Image
               source={require("@/assets/images/megb.png")}
