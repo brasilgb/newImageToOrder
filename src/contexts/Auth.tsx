@@ -38,8 +38,6 @@ export default function AuthProvider({ children }: AuthProps) {
 
     const signIn = useCallback(async ({ email, password }: SignInProps) => {
         setLoading(true);
-        console.log('email', email);
-        console.log('password', password);
         
         await apisos.post('loginuser', {
             "email": email,
